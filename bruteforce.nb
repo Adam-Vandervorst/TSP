@@ -182,7 +182,7 @@ Cell[BoxData[{
    RowBox[{"Permutations", "[", "order", "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"optimalroute", "=", "Infinity"}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"optimaldistance", "=", "Infinity"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"dim", "=", 
    RowBox[{"Dimensions", "[", "options", "]"}]}], 
