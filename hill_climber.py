@@ -6,7 +6,7 @@ from dataset import n, matrix
 
 def close_perms(perm):
     for i in range(n):
-        for j in range(n):
+        for j in range(i):
             new_perm = perm.copy()
             new_perm[i], new_perm[j] = new_perm[j], new_perm[i]
             yield new_perm
