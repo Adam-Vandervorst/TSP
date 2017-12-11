@@ -1,18 +1,18 @@
 """multi-core brute force TSP"""
 
 from time import time
+from itertools import permutations
+from concurrent.futures import ThreadPoolExecutor
 
 import numpy as np
-from concurrent.futures import ThreadPoolExecutor
 from numba import vectorize, int32
-from sympy.utilities.iterables import multiset_permutations
 
 from dataset import n, matrix
 
 batches = 10
 cores = 8
 
-data = iter(multiset_permutations(range(n)))
+data = iter(permutations(range(n)))
 results = [0]*batches
 
 

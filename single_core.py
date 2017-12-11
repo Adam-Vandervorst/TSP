@@ -1,10 +1,10 @@
 """single-core brute force TSP"""
 
 from time import time
+from itertools import permutations
 
 import numpy as np
 from numba import vectorize, int32
-from sympy.utilities.iterables import multiset_permutations
 
 from dataset import n, matrix
 
@@ -18,7 +18,7 @@ def dist12(i0, i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11):
            + matrix[i8, i9] + matrix[i9, i10] + matrix[i10, i11]
 
 
-data = iter(multiset_permutations(range(n)))
+data = iter(permutations(range(n)))
 results = {}
 
 t = time()
