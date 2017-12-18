@@ -1,4 +1,4 @@
-"""Hill climber algorithm on TSP"""
+"""Simulated annealing algorithm on TSP"""
 import numpy as np
 
 from dataset import n, matrix
@@ -19,7 +19,9 @@ def road_length(perm):
     return length
 
 
-def hillclimb(best_perm, best_score, max_evaluations):
+def anneal(best_perm, best_score, max_evaluations):
+    α = 0.998
+    temp = 100
     num_evaluations = 1
 
     while num_evaluations < max_evaluations:
@@ -32,12 +34,12 @@ def hillclimb(best_perm, best_score, max_evaluations):
             # see if this move is better than the current
             next_score = road_length(perm)
             num_evaluations += 1
-            if next_score < best_score:
+            if np.exp(-(next_score-best_score)/temp) > np.random.rand():
                 best_perm = perm
                 best_score = next_score
                 move_made = True
                 break  # depth first search
-
+            temp *= α
         if not move_made:
             break  # we couldn't find a better move
             # (must be at a local maximum)
@@ -48,7 +50,7 @@ def hillclimb(best_perm, best_score, max_evaluations):
 if __name__ == '__main__':
     random_perm = np.random.permutation(n)
     score = road_length(random_perm)
-    evals, best, perm = hillclimb(random_perm, score, 1000)
+    evals, best, perm = anneal(random_perm, score, 1000)
 
     print(f"Ran {evals} evaluations...")
     print("Shortest route found is:")
